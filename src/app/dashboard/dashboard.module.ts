@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreModule } from '../core/core.module';
+import { DashboardComponent } from './dashboard.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
-import { DashboardComponent } from './dashboard.component';
-import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -18,7 +17,15 @@ const routes: Routes = [
       {
         path: 'detail/:id',
         component: ItemDetailComponent
-      }
+      },
+      {
+        path: 'cart',
+        loadChildren: () => import('../cart/cart.module').then(m => m.CartModule)
+      },
+      {
+        path: 'checkout',
+        loadChildren: () => import('../checkout/checkout.module').then(m => m.CheckoutModule)
+      },
     ]
   }
 ];
@@ -30,7 +37,6 @@ const routes: Routes = [
     DashboardComponent
   ],
   imports: [
-    CommonModule,
     CoreModule,
     RouterModule.forChild(routes)
   ],

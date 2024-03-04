@@ -2,5 +2,11 @@
     .title {
         font-family: 'Pacifico';
         font-size: 1.6rem;
+        text-decoration: none;
+        color: unset;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

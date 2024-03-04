@@ -10,14 +10,6 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-      {
-        path: 'cart',
-        loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
-      },
-      {
-        path: 'checkout',
-        loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)
       }
     ]
   },
