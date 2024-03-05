@@ -7,12 +7,12 @@ import { ProductMockService } from './mocks/product-mock.service';
 
 @Injectable({
   providedIn: 'root',
-  useExisting: ProductMockService
+  useClass: ProductMockService
 })
 export class ProductService {
   private readonly URL = 'http://localhost:3000/product';
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(protected _httpClient: HttpClient) { }
 
   getAll(): Observable<Response<Product[]>> {
     return this._httpClient.get<Response<Product[]>>(`${ this.URL }`);

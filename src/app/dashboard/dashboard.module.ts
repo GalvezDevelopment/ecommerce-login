@@ -4,6 +4,7 @@ import { CoreModule } from '../core/core.module';
 import { DashboardComponent } from './dashboard.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
   ],
   imports: [
     CoreModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
   exports: [RouterModule]
 })

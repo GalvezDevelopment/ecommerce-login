@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductMockService } from './services/mocks/product-mock.service';
 
 const materialModules = [
   MatToolbarModule,
@@ -13,6 +14,7 @@ const materialModules = [
 
 @NgModule({
   declarations: [],
+  providers: [ProductMockService],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -24,4 +26,11 @@ const materialModules = [
     ...materialModules
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
+      providers: [ProductMockService],
+      ngModule: SharedModule
+    } as ModuleWithProviders<SharedModule>;
+  }
+}

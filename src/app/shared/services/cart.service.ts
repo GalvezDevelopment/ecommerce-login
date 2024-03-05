@@ -7,8 +7,7 @@ import { Response } from '../interfaces/response.interface';
 import { CartMockService } from './mocks/cart-mock.service';
 
 @Injectable({
-  providedIn: 'root',
-  useExisting: CartMockService
+  providedIn: 'root'
 })
 export class CartService {
   private readonly URL = 'http://localhost:3000/cart';
