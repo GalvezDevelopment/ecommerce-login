@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Response } from '../interfaces/response.interface';
 import { Product, ProductId } from '../interfaces/product.interface';
+import { ProductMockService } from './mocks/product-mock.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  useExisting: ProductMockService
 })
 export class ProductService {
   private readonly URL = 'http://localhost:3000/product';

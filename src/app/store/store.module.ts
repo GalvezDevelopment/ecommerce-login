@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule as NgrxStoreModule } from '@ngrx/store';
-import { ProductsEffects } from './services/products.effects';
-import { CartEffects } from './services/cart.effects';
+import { ProductsEffects } from './effects/products.effects';
+import { CartEffects } from './effects/cart.effects';
 import { cartReducer, productReducer } from './reducers';
 
 
