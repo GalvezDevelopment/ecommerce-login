@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductMockService } from './services/mocks/product-mock.service';
+import { ProductViewComponent } from './components/product-view/product-view.component';
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { CartProductComponent } from './components/cart-product/cart-product.component';
 
 const materialModules = [
   MatToolbarModule,
@@ -13,7 +16,11 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProductViewComponent,
+    ProductItemComponent,
+    CartProductComponent
+  ],
   providers: [ProductMockService],
   imports: [
     CommonModule,
@@ -23,7 +30,8 @@ const materialModules = [
   exports: [
     CommonModule,
     HttpClientModule,
-    ...materialModules
+    ...materialModules,
+    ProductViewComponent,
   ]
 })
 export class SharedModule {

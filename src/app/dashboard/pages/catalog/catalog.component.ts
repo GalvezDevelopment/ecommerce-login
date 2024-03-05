@@ -21,4 +21,8 @@ export class CatalogComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadProducts());
   }
+
+  addProduct(productId: string): void {
+    console.log(productId);
+  }
 }

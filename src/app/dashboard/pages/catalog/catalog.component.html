@@ -1,3 +1,7 @@
-<ul>
-    <li *ngFor="let p of products$ | async">{{ p.title }}</li>
-</ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-3 pb-5" *ngFor="let p of products$ | async">
+            <app-product-view [product]="p" (select)="addProduct($event)"></app-product-view>
+        </div>
+    </div>
+</div>

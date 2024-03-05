@@ -6,3 +6,4 @@ export interface Product {
 }
 
 export type ProductId = Product['id'];
+export type ProductView = 'CartView' | 'ProductView';

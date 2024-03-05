@@ -1,0 +1,4 @@
+<ng-container [ngSwitch]="viewType">
+    <app-cart-product *ngSwitchCase="'CartView'" [product]="product"></app-cart-product>
+    <app-product-item *ngSwitchDefault [product]="product" (select)="select.emit(product.id)"></app-product-item>
+</ng-container>
