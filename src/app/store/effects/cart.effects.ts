@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { CartService } from '../../shared/services/cart.service';
-import { cartLoaded, loadCart } from '../actions/cart.actions';
+import { addProduct, cartLoaded, loadCart } from '../actions/cart.actions';
 import { exhaustMap, map } from 'rxjs';
 import { CartItem } from '../../shared/interfaces/cart-item.interface';
 
@@ -15,5 +15,12 @@ export class CartEffects {
         ))
     ));
 
-    constructor(private _actions$: Actions, private _cartSrv: CartService) {}
+    addProduct$ = createEffect(() => this._actions$.pipe(
+        ofType(addProduct),
+        exhaustMap(action => this._cartSrv.addProduct(action.productId).pipe(
+            map(() => loadCart())
+        ))
+    ));
+
+    constructor(private _actions$: Actions, private _cartSrv: CartService) { }
 }

@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CartItem } from '../interfaces/cart-item.interface';
-import { Product, ProductId } from '../interfaces/product.interface';
+import { ProductId } from '../interfaces/product.interface';
 import { Response } from '../interfaces/response.interface';
 import { CartMockService } from './mocks/cart-mock.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  useExisting: CartMockService
 })
 export class CartService {
   private readonly URL = 'http://localhost:3000/cart';

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../../shared/interfaces/product.interface';
 import { selectCatalog } from '../../../store/selectors/product.selectors';
 import { loadProducts } from '../../../store/actions/product.actions';
+import { addProduct } from '../../../store/actions/cart.actions';
 
 @Component({
   selector: 'app-catalog',
@@ -14,15 +15,15 @@ import { loadProducts } from '../../../store/actions/product.actions';
 export class CatalogComponent implements OnInit {
   products$: Observable<Product[]>;
 
-  constructor(private store: Store<GlobalState>) {
-    this.products$ = store.select(selectCatalog);
+  constructor(private _store: Store<GlobalState>) {
+    this.products$ = _store.select(selectCatalog);
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadProducts());
+    this._store.dispatch(loadProducts());
   }
 
   addProduct(productId: string): void {
-    console.log(productId);
+    this._store.dispatch(addProduct({ productId }));
   }
 }
