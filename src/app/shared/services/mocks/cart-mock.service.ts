@@ -1,6 +1,6 @@
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, delay, map, of, tap } from 'rxjs';
 import { CartItem } from '../../interfaces/cart-item.interface';
 import { Product } from '../../interfaces/product.interface';
 import { Response } from '../../interfaces/response.interface';
@@ -48,6 +48,11 @@ export class CartMockService extends CartService {
       this._cart = this._cart.filter(p => p.item.id !== productId);
     }
     return of({ status: index > -1 ? HttpStatusCode.Ok : HttpStatusCode.NotFound, error: index > -1 ? 'Item does not exist.' : '' } as Response<null>);
+  }
+
+  override checkout(): Observable<Response<null>> {
+    this._cart = [];
+    return of({ status: HttpStatusCode.Ok } as Response<null>).pipe(delay(2000));
   }
 
   private getProductIndexById(productId: string): { index: number, item: CartItem | null } {

@@ -4,4 +4,5 @@ import { Product } from "./product.interface";
 export interface GlobalState {
     products: Product[];
     cart: CartItem[];
+    isLoading: boolean;
 }

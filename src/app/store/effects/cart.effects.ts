@@ -2,9 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { CartService } from '../../shared/services/cart.service';
-import { addProduct, cartLoaded, loadCart } from '../actions/cart.actions';
-import { exhaustMap, map } from 'rxjs';
+import { addProduct, cartLoaded, checkout, checkoutCompleted, loadCart, removeProduct } from '../actions/cart.actions';
+import { exhaustMap, map, tap } from 'rxjs';
 import { CartItem } from '../../shared/interfaces/cart-item.interface';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { GlobalState } from '../../shared/interfaces/store.interface';
+import { hiddenLoading, showLoading } from '../actions/loading.actions';
 
 @Injectable()
 export class CartEffects {
@@ -22,5 +26,21 @@ export class CartEffects {
         ))
     ));
 
-    constructor(private _actions$: Actions, private _cartSrv: CartService) { }
+    removeProduct$ = createEffect(() => this._actions$.pipe(
+        ofType(removeProduct),
+        exhaustMap(action => this._cartSrv.removeProduct(action.productId).pipe(
+            map(() => loadCart())
+        ))
+    ));
+
+    checkout$ = createEffect(() => this._actions$.pipe(
+        ofType(checkout),
+        tap(() => this.store.dispatch(showLoading())),
+        exhaustMap(() => this._cartSrv.checkout().pipe(
+            tap((() => this.store.dispatch(hiddenLoading()))),
+            tap(() => this._router.navigateByUrl('/'))
+        ))
+    ), { dispatch: false });
+
+    constructor(private _actions$: Actions, private _cartSrv: CartService, private _router: Router, private store: Store<GlobalState>) { }
 }

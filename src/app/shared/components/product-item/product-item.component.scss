@@ -4,11 +4,16 @@
     height: 100%;
 
     img {
-        width: 100%;
+        width: 60%;
         aspect-ratio: 1;
     }
 
     header {
         flex-grow: 1;
+    }
+
+    &:hover img {
+        width: 65%;
+        transition: width 200ms ease-out;
     }
 }

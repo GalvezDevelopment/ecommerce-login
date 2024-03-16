@@ -5,3 +5,4 @@ const feature = (state: GlobalState) => state.cart;
 
 export const selectCart = createSelector(feature, cart => cart);
 export const selectCartCount = createSelector(feature, cart => cart.reduce((prev, curr) => prev + curr.quantity, 0));
+export const selectCartTotal = createSelector(feature, cart => cart.reduce((prev, curr) => prev + (curr.quantity * curr.item.price), 0));

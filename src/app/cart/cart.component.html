@@ -1,1 +1,19 @@
-<p>cart works!</p>
+<div class="container-fluid h-100 overflow-hidden">
+    <div class="row h-100 overflow-hidden">
+        <div class="col-md-8 h-100 overflow-auto">
+            <div class="item d-flex align-items-center" *ngFor="let cartItem of cartItems$ | async">
+                <section class="item__quantity fs-4 px-3">{{cartItem.quantity}}</section>
+                <app-product-view class="flex-grow-1" viewType="CartView" [product]="cartItem.item"></app-product-view>
+                <button mat-icon-button color="primary" (click)="remove(cartItem.item.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center h-100">
+            <section class="w-100 text-center">
+                <h2>Total: <span>{{ cartTotal$ | async | currency }}</span></h2>
+                <a mat-flat-button color="primary" class="w-100" routerLink="/checkout">Checkout</a>
+            </section>
+        </div>
+    </div>
+</div>

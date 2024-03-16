@@ -3,14 +3,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule as NgrxStoreModule } from '@ngrx/store';
 import { ProductsEffects } from './effects/products.effects';
 import { CartEffects } from './effects/cart.effects';
-import { cartReducer, productReducer } from './reducers';
+import { cartReducer, loadingReducer, productReducer } from './reducers';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    NgrxStoreModule.forRoot({ products: productReducer, cart: cartReducer }),
+    NgrxStoreModule.forRoot({ products: productReducer, cart: cartReducer, isLoading: loadingReducer  }),
     EffectsModule.forRoot([ProductsEffects, CartEffects]),
   ],
   exports: [NgrxStoreModule]

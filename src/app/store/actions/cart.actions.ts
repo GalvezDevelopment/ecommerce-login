@@ -11,3 +11,4 @@ export const addProduct = createAction(getTitle('Add Product'), props<{ productI
 export const removeProduct = createAction(getTitle('Remove product'), props<{ productId: ProductId }>());
 export const empty = createAction(getTitle('Empty'));
 export const checkout = createAction(getTitle('Checkout'));
+export const checkoutCompleted = createAction(getTitle('Checkout complete'));

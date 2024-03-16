@@ -26,4 +26,8 @@ export class CartService {
   removeProduct(productId: string): Observable<Response<null>> {
     return this._httpClient.delete<Response<null>>(`${ this.URL }`)
   }
+
+  checkout(): Observable<Response<null>> {
+    return this._httpClient.post<Response<null>>(`${this.URL}`, { userId: '1234' });
+  }
 }
